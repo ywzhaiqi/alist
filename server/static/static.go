@@ -14,10 +14,11 @@ import (
 	"github.com/alist-org/alist/v3/internal/conf"
 	"github.com/alist-org/alist/v3/internal/setting"
 	"github.com/alist-org/alist/v3/pkg/utils"
+	"github.com/alist-org/alist/v3/public"
 	"github.com/gin-gonic/gin"
 )
 
-var static fs.FS = public.Public
+var static fs.FS
 
 func initStatic() {
 	if conf.Conf.DistDir == "" {
@@ -26,7 +27,7 @@ func initStatic() {
 			return
 		}
 
-		dist, err := fs.Sub(static, "dist")
+		dist, err := fs.Sub(public.Public, "dist")
 		if err != nil {
 			utils.Log.Fatalf("failed to read dist dir")
 		}
