@@ -59,7 +59,7 @@ func MyHandleFsList(path string, objs []model.Obj) {
 	maxModifieObj := lo.MaxBy(objs, func(item model.Obj, max model.Obj) bool {
 		fullPath := stdpath.Join(path, item.GetName())
 		modified := item.ModTime()
-		dirCache, ok := MyGetDirCach(fullPath)
+		dirCache, ok := MyGetDirCache(fullPath)
 		if ok {
 			if modified.Before(dirCache.Modified) {
 				modified = dirCache.Modified
@@ -72,7 +72,7 @@ func MyHandleFsList(path string, objs []model.Obj) {
 		size := int(item.GetSize())
 		if item.IsDir() {
 			fullPath := stdpath.Join(path, item.GetName())
-			dirCache, ok := MyGetDirCach(fullPath)
+			dirCache, ok := MyGetDirCache(fullPath)
 			if ok {
 				size = int(dirCache.Size)
 			}
@@ -134,6 +134,6 @@ func MyHandleFsList(path string, objs []model.Obj) {
 	}
 }
 
-func MyGetDirCach(path string) (model.DirCache, bool) {
+func MyGetDirCache(path string) (model.DirCache, bool) {
 	return listCache.Get(path)
 }

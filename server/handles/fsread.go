@@ -213,7 +213,7 @@ func toObjsResp(objs []model.Obj, parent string, encrypt bool) []ObjResp {
 	for _, obj := range objs {
 		thumb, _ := model.GetThumb(obj)
 		// add by me
-		dirCache, ok := MyGetDirCach(stdpath.Join(parent, obj.GetName()))
+		dirCache, ok := MyGetDirCache(stdpath.Join(parent, obj.GetName()))
 		size := obj.GetSize()
 		modified := obj.ModTime()
 		if ok {
