@@ -38,6 +38,7 @@ if %GOOS% == windows (
 ) ^
 else (
   go build -ldflags "-s -w" -o "%output%/%1/%name%"
+  upx -9 "%output%/%1/%name%"
 )
 
 endlocal
